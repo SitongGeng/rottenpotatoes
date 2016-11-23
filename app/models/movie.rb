@@ -1,10 +1,10 @@
 class Movie < ActiveRecord::Base
-  #def self.all_ratings
-  #   Movie.select(:rating).map{ |r| r.rating }.uniq
-  # end
-  @@all_ratings = ['G','PG','PG-13','R']
-
-	def self.all_ratings
-		@@all_ratings
-	end
+  #attr_accessible :title, :rating, :description, :release_date, :director
+  def self.all_ratings
+    %w(G PG PG-13 NC-17 R)
+  end
+  
+  def self.similar_directors(director)
+    Movie.where(:director => director)
+  end
 end
